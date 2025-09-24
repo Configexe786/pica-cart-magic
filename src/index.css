@@ -2,40 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* PicaMart Design System - Professional white & blue e-commerce theme */
 
 @layer base {
   :root {
+    /* Base colors - Clean white background with professional blue accents */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 11% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 11% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 11% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary blue - Professional e-commerce blue (#0B6EF6) */
+    --primary: 215 91% 51%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 91% 45%;
+    --primary-light: 215 91% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Light blue accents and backgrounds */
+    --secondary: 215 20% 98%;
+    --secondary-foreground: 210 11% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Subtle grays for less important content */
+    --muted: 210 17% 96%;
+    --muted-foreground: 210 11% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - For highlights and special elements */
+    --accent: 215 91% 96%;
+    --accent-foreground: 215 91% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive - For errors and dangerous actions */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Success - For successful actions */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 96%;
 
+    /* Warning - For warnings */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 210 17% 91%;
+    --input: 210 17% 91%;
+    --ring: 215 91% 51%;
+
+    /* Radius */
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -101,5 +118,68 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* PicaMart Component Utilities */
+@layer components {
+  /* Gradients */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-hover)));
+  }
+  
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--primary-light)), hsl(var(--background)));
+  }
+
+  /* Shopping cart badge */
+  .cart-badge {
+    @apply absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium;
+  }
+
+  /* Product card hover effects */
+  .product-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Button variants using design system */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200;
+  }
+
+  .btn-cart {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover transition-colors duration-200 rounded-md px-4 py-2 text-sm font-medium;
+  }
+
+  /* Status indicators */
+  .status-placed { @apply bg-warning/10 text-warning; }
+  .status-confirmed { @apply bg-primary/10 text-primary; }
+  .status-packaging { @apply bg-accent/10 text-accent-foreground; }
+  .status-out-for-delivery { @apply bg-muted text-muted-foreground; }
+  .status-delivered { @apply bg-success/10 text-success; }
+  .status-cancelled { @apply bg-destructive/10 text-destructive; }
+
+  /* Animations */
+  .fade-in {
+    @apply animate-in fade-in-0 duration-300;
+  }
+
+  .slide-up {
+    @apply animate-in slide-in-from-bottom-4 duration-300;
+  }
+
+  .success-pulse {
+    animation: success-pulse 2s infinite;
+  }
+
+  @keyframes success-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
   }
 }
